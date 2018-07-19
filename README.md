@@ -1,11 +1,10 @@
 ---
 services: media-services
 platforms: node
-author: msonecode
+author: msonecode fc13240
 ---
 
-
-# Video on Demand in Azure Media Services with AngularJS and NodeJS
+# Video on Demand in Azure Media Services with AngularJS and NodeJS (support azure china)
 
 ## Introduction:
 
@@ -25,13 +24,15 @@ Ensure you have a streaming endpoint enabled in portal.azure.com > Media Service
 
 ***3. MongoDB***
 
-This sample application uses MongoDB to store asset ID, streaming URL, thumbnail and other information. If you don't have one yet, you may get a free one from [mlab](https://mlab.com/).
+This sample application uses MongoDB to store asset ID, streaming URL, thumbnail and other information. If you don't have one yet, you may get a free one from [MongoDB Atlas ](https://www.mongodb.com/cloud).
 
 ***4. Enable CORS for the Storage Account associated with Media Services***
 
 The easiest way is to use [Azure CLI](https://github.com/Azure/azure-cli).
 
 `azure storage cors set -a "{YOUR-STORAGE-ACCOUNT}" -k "{STORAGE-ACCOUNT-KEY}" --blob --cors "[{\"AllowedOrigins\":\"*\",\"AllowedMethods\":\"GET,POST,PUT,OPTIONS\",\"MaxAgeInSeconds\":\"86400\",\"AllowedHeaders\":\"*\",\"ExposedHeaders\":\"*\"}]" --verbose`
+
+***5. Edit the amsapi.js if you use the Azure china Media Services***
 
 ## Application Flow:
 
@@ -92,6 +93,14 @@ AngularJS  ------------------  NodeJS  ------------------  Azure Media Services
 - bower install
 - node bin/www
 
+## Screen:
+![image](https://github.com/fc13240/media-services-node-vod/blob/master/Code/screen/1.png)
+![image](https://github.com/fc13240/media-services-node-vod/blob/master/Code/screen/2.png)
+![image](https://github.com/fc13240/media-services-node-vod/blob/master/Code/screen/3.png)
+![image](https://github.com/fc13240/media-services-node-vod/blob/master/Code/screen/4.png)
+![image](https://github.com/fc13240/media-services-node-vod/blob/master/Code/screen/5.png)
+![image](https://github.com/fc13240/media-services-node-vod/blob/master/Code/screen/6.png)
+![image](https://github.com/fc13240/media-services-node-vod/blob/master/Code/screen/7.png)
 
 ## Notes:
 
