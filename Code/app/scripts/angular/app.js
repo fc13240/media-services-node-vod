@@ -3,7 +3,6 @@ var app = angular.module('amsApp',
         'ui.bootstrap',
         'ngFileUpload',
         'ngResource',
-        'ui.bootstrap',
         'ngRoute'
     ]
 )
@@ -37,6 +36,7 @@ app.factory("newVideo", function() {
         "encodeJobId": "",
         "filename": "",
         "title": "",
+        "size":0,
         "description": "",
         "accessPolicyId": "",
         "locatorId": "",
@@ -78,7 +78,7 @@ app.controller('uploadCtrl', function ($scope, $http, Upload, $timeout, newVideo
                 .substring(1);
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-            s4() + '-' + s4() + s4() + s4();
+            s4() + '-' + s4() + s4();// + s4(); remove thia is usefull fo azure china
     }
 
     var uploadRequest = function (file) {
@@ -209,6 +209,17 @@ app.controller('videoCtrl', function ($scope, videos) {
         $scope.videos = videos.query(function () {
             $scope.videoloader = false;
         });
+    };
+
+    $scope.encoding = function (vid) {
+        if (vid) {
+                        $http.post('/encode/' + vid.rawAssetId, {'size': vid.size, 'thumbnail': vid.thumbnail})
+                        .then(function successCallback(response){
+                           console.log("encode-response:",response);
+                        }, function errorCallback(error){
+                        	console.log("encode-error:",error);
+                        });
+        }
     };
 
     $scope.delete = function (vid) {

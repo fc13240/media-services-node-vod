@@ -17,7 +17,7 @@ var getAccessToken = function (callback) {
             grant_type: 'client_credentials',
             client_id: config.client_id,
             client_secret: config.client_secret,
-            scope: 'urn:WindowsAzureMediaServices'
+            scope: 'urn:WindowsAzureMediaServices' //change this line to `resource:'https://rest.media.chinacloudapi.cn'` is usefull for azure china 
         },
         strictSSL: true
     }, function (err, res) {
@@ -44,7 +44,7 @@ var getAccessToken = function (callback) {
 var getRedirectURL = function (callback) {
     callback = callback || function () {};
     request.get({
-        uri: "https://media.windows.net/",
+        uri: "https://media.windows.net/", //change to your RESTAPIEndpoint,is usefull for azure china 
         headers: {'Accept': 'application/json', 'Authorization': accessToken, 'x-ms-version': '2.11'},
         followRedirect: false,
         strictSSL: true
@@ -53,6 +53,7 @@ var getRedirectURL = function (callback) {
             base_url = res.headers.location;
             callback(err);
         } else {
+            // add `base_url = your RESTAPIEndpoint,is usefull for azure china `
             callback(err || ': Expected 301 status, received: ' + res.statusCode + '\n' + res.body);
         }
     });
